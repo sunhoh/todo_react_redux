@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeInputText, resetInputValue } from '../../redux/modules/address';
 
-export default function TextInput() {
+export default function TextInput({ props }) {
   const dispatch = useDispatch();
   const title = useSelector(state => state.address);
 
@@ -19,7 +19,7 @@ export default function TextInput() {
     <Container>
       <InputBox>
         <input
-          placeholder="상세주소"
+          placeholder="상세 정보"
           value={title.title}
           onChange={changeValue}
         />

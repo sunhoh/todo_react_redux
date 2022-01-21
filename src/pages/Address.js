@@ -1,23 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeInputText } from '../redux/modules/address';
+import { useSelector } from 'react-redux';
 import TextInput from './component/TextInput';
 
-export default function Main() {
-  const dispatch = useDispatch();
+export default function Address() {
   const titleList = useSelector(state => state.address);
 
   return (
     <Container>
       <Inner>
         {titleList.list.map((item, index) => {
-          return item.type === 'detailedAddress' ? (
-            <TextInput key={index} index={index} />
-          ) : (
-            <TextInput key={index} type={item.type} index={index} />
-          );
+          <TextInput key={index} index={index} />;
         })}
+        <TextInput />
       </Inner>
     </Container>
   );
