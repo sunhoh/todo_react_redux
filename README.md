@@ -8,7 +8,7 @@
 
 ### State Management
 
-- Redux
+- Redux, Redux Toolkit
 
 ### Code Quality Tool
 

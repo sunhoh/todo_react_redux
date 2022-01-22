@@ -36,7 +36,9 @@ export default function counter(state = initialState, action) {
     case ADDRESS_TEXT:
       return { ...state, title: action.text };
     case RESET_TEXT:
-      return { ...state };
+      let newTodo = [...state];
+      newTodo = newTodo.filter(e => e.id != action.payload);
+      return newTodo;
     default:
       return state;
   }

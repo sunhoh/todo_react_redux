@@ -11,13 +11,23 @@ function Router() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Routes>
-          {/* <Route exact={true} path="/" element={<Address />} /> */}
-
-          <Route exact path="/" element={<AddTodoForm />} />
-          <Route exact path="/" element={<TodoList />} />
-          <Route exact path="/" element={<TotalCompleteItems />} />
-        </Routes>
+        <div
+          style={{
+            // margin: `300px`,
+            // display: 'flex',
+            textAlign: 'center',
+            padding: '10px',
+            fontSize: '20px',
+            border: `1px solid black`,
+          }}
+        >
+          <AddTodoForm />
+          <TodoList />
+          <TotalCompleteItems />
+          <Routes>
+            {/* <Route exact={true} path="/" element={<Address />} /> */}
+          </Routes>
+        </div>
       </BrowserRouter>
     </Provider>
   );

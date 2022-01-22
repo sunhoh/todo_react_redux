@@ -1,17 +1,23 @@
 import React from 'react';
+import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { deleteTodo } from '../redux/modules/todo';
 
-const TodoItem = ({ id, title, completed }) => {
+const TodoItem = ({ todo }) => {
+  let dispatch = useDispatch();
+
   return (
-    <li className={`list-group-item ${completed && 'list-group-item-success'}`}>
-      <div className="d-flex justify-content-between">
-        <span className="d-flex align-items-center">
-          <input type="checkbox" className="mr-3" checked={completed} />
-          {title}
-        </span>
-        <button className="btn btn-danger">Delete</button>
-      </div>
-    </li>
+    <Container>
+      <button>Edit</button>
+      <button onClick={() => dispatch(deleteTodo(todo.id))}>Delete</button>
+    </Container>
   );
 };
 
 export default TodoItem;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+`;
