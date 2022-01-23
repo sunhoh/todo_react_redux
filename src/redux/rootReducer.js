@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { createBrowserHistory } from 'history';
-import address from './modules/address';
+import quiz from './modules/quiz';
 
 export const history = createBrowserHistory();
 
-const rootReducer = combineReducers({ address });
+const rootReducer = combineReducers({ quiz });
 
 export default rootReducer;
