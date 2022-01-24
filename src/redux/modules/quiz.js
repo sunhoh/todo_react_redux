@@ -41,6 +41,36 @@ export const resetText = text => {
 //   };
 // };
 
+// export const loadDB = data => {
+//   return { type: LOAD, data };
+// };
+
+// Firestore에서 collection을 가져옴
+const db = firestore.collection('product');
+
+// Firebase에서 데이터를 가져오는 부분 (LOAD)
+export const loadFB = () => {
+  // 함수를 반환하는 미들웨어 부분
+
+  return function (dispatch) {
+    db.get().then(docs => {
+      // Firestore에서 가져온 데이터를 저장할 변수
+      let data = [];
+      // "product" 콜렉션의 모든 문서에서 데이터와 id를 가져옴!
+      docs.forEach(doc => {
+        if (doc.exists) {
+          data = [...data, { id: doc.id, ...doc.data() }];
+        }
+      });
+
+      // firestore에서 가져온 데이터를 action에 넣어서 dispatch 해준다!
+      // 리덕스 모듈에서 action을 dispatch 해주므로 컴포넌트에서는 firestore와
+      // 통신하는 함수를 불러주면 된다!
+      dispatch(loadBucket(data));
+    });
+  };
+};
+
 // Reducer
 export default function reducer(state = initialState, action) {
   switch (action.type) {
