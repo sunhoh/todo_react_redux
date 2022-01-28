@@ -1,25 +1,15 @@
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeTitle, createQuiz } from '../redux/modules/quiz';
+import { useDispatch } from 'react-redux';
+import { resetText } from '../../redux/modules/todo';
 
-const QuizTitle = () => {
-  const dispatch = useDispatch();
-  const title = useSelector(state => state.quiz);
-
+const Title = props => {
   const [underline, setUnderline] = useState('#d0d0d0');
 
-  const dispatchChangeTitle = e => {
-    dispatch(changeTitle(e.target.value));
-  };
-
-  const handleEnter = e => {
-    e.preventDefault();
-    dispatch(createQuiz());
-  };
+  const dispatch = useDispatch();
 
   return (
-    <Container onSubmit={handleEnter}>
+    <Container onSubmit={props.addList}>
       <Inner
         underline={underline}
         onFocus={() => {
@@ -30,15 +20,16 @@ const QuizTitle = () => {
         }}
       >
         <input
-          placeholder="설문조사 제목을 입력하세요."
-          onChange={dispatchChangeTitle}
+          ref={props.text}
+          placeholder="제목을 입력하세요."
+          onSubmit={() => dispatch(resetText(''))}
         />
       </Inner>
     </Container>
   );
 };
 
-export default QuizTitle;
+export default Title;
 
 const Container = styled.form``;
 

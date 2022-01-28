@@ -1,24 +1,19 @@
 //firebase.js
-import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 
 const firebaseConfig = {
-  // firebase 설정과 관련된 개인 정보
-  apiKey: 'AIzaSyBPHcuYw_OkgMDNZc1ujgqRyNDCgR-W6aE',
-  authDomain: 'study-5ab41.firebaseapp.com',
-  projectId: 'study-5ab41',
-  storageBucket: 'study-5ab41.appspot.com',
-  messagingSenderId: '526499238319',
-  appId: '1:526499238319:web:59adc34adc35e7346a9f5a',
-  measurementId: 'G-V1P39F1GKN',
+  apiKey: 'AIzaSyBB-NZ_Hd-Y8LCgdeJZdiUzqstqSU_6W78',
+  authDomain: 'duckgugong-react.firebaseapp.com',
+  projectId: 'duckgugong-react',
+  storageBucket: 'duckgugong-react.appspot.com',
+  messagingSenderId: '455138718008',
+  appId: '1:455138718008:web:0e234daddc7a1cf4ac91cd',
+  measurementId: 'G-3DSJ5X279T',
 };
 
 // firebaseConfig 정보로 firebase 시작
-// firebase.initializeApp(firebaseConfig);
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+firebase.initializeApp(firebaseConfig);
 
 // firebase의 firestore 인스턴스를 변수에 저장
 const firestore = firebase.firestore();

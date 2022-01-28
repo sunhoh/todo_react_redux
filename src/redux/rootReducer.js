@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { createBrowserHistory } from 'history';
-import quiz from './modules/quiz';
+import todo from './modules/todo';
 
 export const history = createBrowserHistory();
 
-const rootReducer = combineReducers({ quiz });
+const rootReducer = combineReducers({ todo });
 
 export default rootReducer;

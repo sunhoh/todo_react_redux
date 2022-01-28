@@ -1,22 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { deleteQuiz } from '../redux/modules/quiz';
+import { deleteList } from '../../redux/modules/todo';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-const QuizBox = props => {
+const Todo = props => {
   const dispatch = useDispatch();
 
   return (
     <Container>
-      <InputBox type="text" placeholder="설문조사 제목을 입력하세요." />
-      <DeleteButton onClick={() => dispatch(deleteQuiz(props.idx))}>
-        <div>X</div>
+      {props.text}
+      <DeleteButton onClick={() => dispatch(deleteList(props.idx))}>
+        <DeleteForeverIcon color="secondary" />
       </DeleteButton>
     </Container>
   );
 };
 
-export default QuizBox;
+export default Todo;
 
 const Container = styled.div`
   padding: 20px;
@@ -26,7 +27,6 @@ const Container = styled.div`
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
-  /* flex-direction: row-reverse; */
 
   &: hover {
     border: 2px solid blue;
@@ -41,18 +41,5 @@ const DeleteButton = styled.div`
 
   &:hover {
     cursor: pointer;
-  }
-`;
-const InputBox = styled.input`
-  resize: none;
-  width: 100%;
-  font-size: 16px;
-  overflow: hidden;
-  appearance: none;
-  outline: none;
-  border: none;
-
-  ::placeholder {
-    color: #d0d0d0;
   }
 `;

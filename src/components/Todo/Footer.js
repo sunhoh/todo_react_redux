@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { createQuiz } from '../redux/modules/quiz';
-import { useDispatch } from 'react-redux';
 
-function QuizFooter() {
-  const dispatch = useDispatch();
-
+function Footer(props) {
   return (
     <Container>
-      <AddButton onClick={() => dispatch(createQuiz())}>
+      <AddButton onClick={props.addList}>
         <span>+</span>
         <span>Add</span>
       </AddButton>
@@ -19,7 +15,7 @@ function QuizFooter() {
   );
 }
 
-export default QuizFooter;
+export default Footer;
 
 const Container = styled.div`
   margin-top: 10px;

@@ -1,0 +1,47 @@
+// initialState
+const initialState = {
+  list: [
+    { text: '치킨 먹기', completed: false },
+    { text: '넷플릭스 보기', completed: false },
+    { text: '여행 가기', completed: false },
+  ],
+};
+
+// Action Type
+const CREATE = 'todo/CREATE';
+const DELETE = 'todo/DELETE';
+const RESET = 'todo/RESET';
+
+// Action Creator & Action
+
+export const createList = text => {
+  return { type: CREATE, text };
+};
+
+export const deleteList = index => {
+  return { type: DELETE, index };
+};
+
+export const resetText = text => {
+  return { type: RESET, text };
+};
+
+// Reducer
+export default function reducer(state = initialState, action) {
+  switch (action.type) {
+    case CREATE:
+      const newQuiz = [...state.list, { text: action.text, completed: false }];
+      return { list: newQuiz };
+
+    case RESET:
+      return { ...state, text: '' };
+
+    case DELETE:
+      const deletedList = state.list.filter(
+        (item, index) => index !== action.index
+      );
+      return { ...state, list: deletedList };
+    default:
+      return state;
+  }
+}
