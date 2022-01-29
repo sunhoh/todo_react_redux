@@ -1,4 +1,7 @@
+import { firestore } from '../../firebase';
+
 // initialState
+
 const initialState = {
   list: [
     { text: '치킨 먹기', completed: false },
@@ -24,6 +27,23 @@ export const deleteList = index => {
 
 export const resetText = text => {
   return { type: RESET, text };
+};
+
+// Firebase에 업데이트
+export const saveFB = () => {
+  return function (dispatch, getState) {
+    const quizList = getState().quiz.list;
+    const quizDB = firestore.collection(getState().todo.text);
+    quizList.forEach((item, index) => {
+      if (item.type === 'objective') {
+        quizDB
+          .doc(`${index + 1}번`)
+          .set({ type: item.type, text: item.text, List: item.List });
+      } else {
+        quizDB.doc(`${index + 1}번`).set({ type: item.type, text: item.text });
+      }
+    });
+  };
 };
 
 // Reducer
